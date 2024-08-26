@@ -1,12 +1,33 @@
-import React from 'react';
+import React, {
+  useEffect,
+  useState,
+} from 'react';
 import {
   NavLink,
   Outlet,
+  useNavigate,
 } from 'react-router-dom';
 
 import '../styles/NavLinks.scss';
 
 const NavLinks = () => {
+  const [userName, setUserName] = useState('');
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const user = localStorage.getItem('user');
+    const userName = user
+      ? JSON.parse(user).name
+      : '';
+
+    setUserName(userName);
+  }, []);
+
+  const handleLogOutClick = () => {
+    navigate('signin');
+    localStorage.removeItem('user');
+  };
+
   return (
     <div className="navigationLinks">
       <ul className="navigationLinks_list">
@@ -57,6 +78,17 @@ const NavLinks = () => {
           >
             Episodes
           </NavLink>
+        </li>
+        <li className="navigationLinks_item logOut">
+          <p className="welcomeText">
+            Hi, {userName}
+          </p>
+          <button
+            className="logOutButton"
+            onClick={handleLogOutClick}
+          >
+            Log out
+          </button>
         </li>
       </ul>
       <Outlet />

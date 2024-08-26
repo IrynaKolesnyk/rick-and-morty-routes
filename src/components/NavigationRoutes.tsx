@@ -7,29 +7,42 @@ import Сharacters from './Сharacters';
 import NotFound from './NotFound';
 import NavLinks from './NavLinks';
 import Character from './Character';
+import SignIn from './auth/SignIn';
+import Location from './Location';
+import Episode from './Episode';
 
 const NavigationRoutes = () => {
   return (
     <Routes>
       <Route element={<NavLinks />}>
         <Route path="/" element={<Home />} />
-        <Route
-          path="/characters"
-          element={<Сharacters />}
-        />
-        <Route
-          path="/characters/:id"
-          element={<Character />}
-        />
-        <Route
-          path="/locations"
-          element={<Locations />}
-        />
-        <Route
-          path="/episodes"
-          element={<Episodes />}
-        />
+        <Route path="/characters">
+          <Route index element={<Сharacters />} />
+          <Route
+            path=":id"
+            element={<Character />}
+          />
+        </Route>
+        <Route path="/locations">
+          <Route index element={<Locations />} />
+          <Route
+            path=":id"
+            element={<Location />}
+          />
+        </Route>
+
+        <Route path="/episodes">
+          <Route index element={<Episodes />} />
+          <Route
+            path=":id"
+            element={<Episode />}
+          />
+        </Route>
       </Route>
+      <Route
+        path="/signIn"
+        element={<SignIn />}
+      />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

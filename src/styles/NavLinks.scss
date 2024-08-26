@@ -23,6 +23,25 @@
       cubic-bezier(0.4, 0, 0.2, 1);
   }
 
+  .logOut {
+    display: flex;
+    align-items: center;
+  }
+
+  .welcomeText {
+    margin-right: 10px;
+    text-decoration: underline;
+  }
+
+  .logOutButton {
+    cursor: pointer;
+  }
+
+  .logOutButton:hover {
+    background-color: #039dda;
+    border-color: #9e9e9e;
+  }
+
   &_link {
     color: #039dda;
   }

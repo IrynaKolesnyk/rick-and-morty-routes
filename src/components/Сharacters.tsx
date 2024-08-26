@@ -1,37 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import CategoriesLinks from './reusableComponents/CategoriesLinks';
 const charactersArr = require('../appData/characters.json');
 
-interface Сharacter {
-  id: number;
-  name: string;
-  status: string;
-  type: string;
-  gender: string;
-  image: string;
-  created: string;
-  species: string;
-}
-
 const Сharacters = () => {
+  const { pathname } = useLocation();
   return (
-    <div>
-      {charactersArr.map(
-        (character: Сharacter) => {
-          return (
-            <ul key={character.id}>
-              <li>
-                <Link
-                  to={`/characters/${character.id}`}
-                >
-                  <p>{character.name}</p>
-                </Link>
-              </li>
-            </ul>
-          );
-        },
-      )}
-    </div>
+    <CategoriesLinks
+      dataArr={charactersArr}
+      pathName={pathname}
+    />
   );
 };
 
